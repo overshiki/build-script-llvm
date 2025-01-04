@@ -1,3 +1,5 @@
 cmake-15.0.0rc1.src
 llvm-15.0.7.src
+llvm-project*
+snapshots
 *.tar.xz
