@@ -4,14 +4,14 @@
 ; - https://github.com/llvm/llvm-project/releases
 
 
-(define (llvm-link) "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.6/llvm-project-19.1.6.src.tar.xz")
+(define (llvm-link) "https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.8/llvm-project-18.1.8.src.tar.xz")
 (define (llvm-file) 
-  (let ((file "llvm-project-19.1.6.src.tar.xz"))
+  (let ((file "llvm-project-18.1.8.src.tar.xz"))
     (join-pwd file)
   )
 )
 (define (llvm-dir) 
-  (let ((dir "llvm-project-19.1.6.src"))
+  (let ((dir "llvm-project-18.1.8.src"))
     (join-pwd dir)
   )
 )

@@ -1,13 +1,9 @@
 #lang racket
-
+(require "local-lib.rkt")
 ; reference:
 ; - https://github.com/AccelerateHS/accelerate-llvm
 ; - https://github.com/llvm/llvm-project/issues/53281
 
-
-(define (join-pwd fileOrDir)
-  (string-append (path->string (current-directory)) fileOrDir)
-)
 
 (define (cmake-utils-link) "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.0-rc1/cmake-15.0.0rc1.src.tar.xz")
 (define (cmake-utils-file) 
@@ -32,17 +28,6 @@
 (define (llvm-15-dir) 
   (let ((dir "llvm-15.0.7.src"))
     (join-pwd dir)
-  )
-)
-
-(define (download-unpack zip-link zip-file dir)
-  (if (file-exists? zip-file)
-    '()
-    (system (string-append "wget " zip-link))
-  )
-  (if (directory-exists? dir)
-    '()
-    (system (string-append "tar xf " zip-file))
   )
 )
 
