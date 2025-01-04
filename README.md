@@ -10,9 +10,16 @@ firstly install `racket`, in ubuntu, just type
 sudo apt-get install racket
 ```
 
-then, run 
+### llvm-15.0.0rc1
+run 
 ```bash
-racket build.rkt
+racket build-llvm-15.rkt
 ```
-
 `llvm` will be built into `llvm-15.0.7.src/build`
+
+### llvm-19.1.6
+run 
+```bash
+racket build-llvm-19.rkt
+```
+`llvm` wiil be built into `llvm-project-19.1.6.src/llvm/build`
