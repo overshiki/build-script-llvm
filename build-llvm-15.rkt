@@ -19,20 +19,16 @@
   )
 )
 
-(define (llvm-15-link) "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.7/llvm-15.0.7.src.tar.xz")
-(define (llvm-15-file) 
-  (let ((file "llvm-15.0.7.src.tar.xz"))
-    (join-pwd file)
-  )
+(define (llvm-link) "https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.7/llvm-15.0.7.src.tar.xz")
+(define (llvm-file) 
+  (join-pwd (fetch-file (llvm-link)))
 )
-(define (llvm-15-dir) 
-  (let ((dir "llvm-15.0.7.src"))
-    (join-pwd dir)
-  )
+(define (llvm-dir) 
+  (join-pwd (fetch-dir (llvm-link)))
 )
 
 (define (get-llvm)
-  (download-unpack (llvm-15-link) (llvm-15-file) (llvm-15-dir))
+  (download-unpack (llvm-link) (llvm-file) (llvm-dir))
   (download-unpack (cmake-utils-link) (cmake-utils-file) (cmake-utils-dir))
 )
 
@@ -58,7 +54,7 @@
       (let ((file-name (path->string file-path)))
         (safe-copy-file file-name 
           (string-append (cmake-utils-dir) "/Modules") 
-          (string-append (llvm-15-dir) "/cmake/modules"))
+          (string-append (llvm-dir) "/cmake/modules"))
       )
     )
     (cmake-utils-list)
@@ -71,24 +67,24 @@
       (mkdir-cmd
         (string-append
           "mkdir -p "
-          (string-append (llvm-15-dir) "/build")
+          (string-append (llvm-dir) "/build")
           " && "
           "mkdir -p "
-          (string-append (llvm-15-dir) "/install")
+          (string-append (llvm-dir) "/install")
         )
       )
       (cd-cmd
         (string-append
           "cd " 
-          (string-append (llvm-15-dir) "/build")
+          (string-append (llvm-dir) "/build")
         )
       )
       (make-cmd 
       (string-append
         "cmake "
-        (llvm-15-dir)
+        (llvm-dir)
         " -DCMAKE_INSTALL_PREFIX="
-        (string-append (llvm-15-dir) "/install")
+        (string-append (llvm-dir) "/install")
         " -DCMAKE_BUILD_TYPE=Release"
         " -DLLVM_ENABLE_ASSERTIONS=ON"
         " -DLLVM_BUILD_LLVM_DYLIB=ON"

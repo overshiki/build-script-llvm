@@ -6,15 +6,12 @@
 
 (define (llvm-link) "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.6/llvm-project-19.1.6.src.tar.xz")
 (define (llvm-file) 
-  (let ((file "llvm-project-19.1.6.src.tar.xz"))
-    (join-pwd file)
-  )
+  (join-pwd (fetch-file (llvm-link)))
 )
 (define (llvm-dir) 
-  (let ((dir "llvm-project-19.1.6.src"))
-    (join-pwd dir)
-  )
+  (join-pwd (fetch-dir (llvm-link)))
 )
+
 
 (define (get-llvm)
   (download-unpack (llvm-link) (llvm-file) (llvm-dir))
